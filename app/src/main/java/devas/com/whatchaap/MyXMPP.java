@@ -292,7 +292,7 @@ public class MyXMPP {
                     +  "sanyam";
             EntityJid j = JidCreate.from(st).asEntityJidIfPossible();
           //  Jid ji= JidCreate.from("userid@ip-172-31-40-69/Smack");
-
+              // hello 
             Mychat = ChatManager.getInstanceFor(connection).createChat(j
                     ,
                     mMessageListener);
