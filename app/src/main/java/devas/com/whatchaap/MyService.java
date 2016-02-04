@@ -38,6 +38,12 @@ public class MyService extends Service {
         UserDetails ud = new UserDetails(this);
         USERNAME = ud.getUsername();
         PASSWORD = ud.getPasswd();
+        if(USERNAME.equals("")) {
+            USERNAME = "devastrix";
+        }
+        if(PASSWORD.equals("")) {
+            PASSWORD = "sam134340";
+        }
         Log.d(USERNAME, PASSWORD);
         cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         try {

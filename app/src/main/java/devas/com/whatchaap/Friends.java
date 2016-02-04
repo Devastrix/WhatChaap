@@ -124,6 +124,10 @@ public class Friends extends Fragment  {
         ArrayList<HashMap<String, String>> al = new ArrayList<>();
 
         for(String t : n) {
+            if(t.trim().equals("")) {
+                lv.setAdapter(null);
+                return;
+            }
             System.out.println("naye " + t);
             hm.put("friend", t.trim());
             al.add(hm);
@@ -138,6 +142,7 @@ public class Friends extends Fragment  {
 
        // adapter1.notifyDataSetChanged();
         //adapter1.add();
+
         lv.setAdapter(sa);
 
 

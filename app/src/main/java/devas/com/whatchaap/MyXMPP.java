@@ -303,7 +303,7 @@ public class MyXMPP {
             ArrayList<String> names = new ArrayList<>();
             for (RosterEntry entry : entries) {
                 System.out.println("friends: " + entry.getName() + " - "+entry.getJid());
-                names.add(entry.getName());
+                names.add(entry.getJid().toString().split("@")[0]);
             }
             return names;
         }

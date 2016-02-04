@@ -94,17 +94,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         doUnbindService();
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        doUnbindService();
-    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        doBindService();
-    }
 
     void doBindService() {
         bindService(new Intent(this, MyService.class), mConnection,
