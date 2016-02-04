@@ -50,6 +50,7 @@ public class MyService extends Service {
         xmpp.login();
 
 
+
     }
 
     @Override

@@ -6,6 +6,8 @@ package devas.com.whatchaap;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.jivesoftware.smack.ConnectionConfiguration;
 import org.jivesoftware.smack.ConnectionListener;
@@ -26,6 +28,7 @@ import org.jivesoftware.smack.tcp.XMPPTCPConnection;
 import org.jivesoftware.smack.tcp.XMPPTCPConnectionConfiguration;
 import org.jivesoftware.smackx.chatstates.ChatState;
 import org.jivesoftware.smackx.chatstates.ChatStateListener;
+import org.jivesoftware.smackx.iqregister.AccountManager;
 import org.jivesoftware.smackx.receipts.DeliveryReceiptManager;
 import org.jivesoftware.smackx.receipts.DeliveryReceiptManager.AutoReceiptMode;
 import org.jivesoftware.smackx.receipts.ReceiptReceivedListener;
@@ -34,6 +37,7 @@ import org.jxmpp.jid.DomainBareJid;
 import org.jxmpp.jid.EntityJid;
 import org.jxmpp.jid.Jid;
 import org.jxmpp.jid.impl.JidCreate;
+import org.jxmpp.jid.parts.Localpart;
 import org.jxmpp.stringprep.XmppStringprepException;
 
 import android.content.Context;
@@ -256,6 +260,28 @@ public class MyXMPP {
         }
 
     }
+    //Account creation
+    public boolean addAccount(String user, String pass, String email) throws XmppStringprepException {
+
+        AccountManager accountManager = AccountManager.getInstance(connection);
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("username", user);
+        map.put("password", pass);
+        map.put("email", email);
+        try {
+            accountManager.createAccount(Localpart.from(user), pass, map);
+            return true;
+        } catch (SmackException.NoResponseException e) {
+            e.printStackTrace();
+        } catch (XMPPException.XMPPErrorException e) {
+            e.printStackTrace();
+        } catch (NotConnectedException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     //Friends roster
     public ArrayList<String> getFriends() {
@@ -292,7 +318,7 @@ public class MyXMPP {
                     +  "sanyam";
             EntityJid j = JidCreate.from(st).asEntityJidIfPossible();
           //  Jid ji= JidCreate.from("userid@ip-172-31-40-69/Smack");
-              // hello 
+              // hello
             Mychat = ChatManager.getInstanceFor(connection).createChat(j
                     ,
                     mMessageListener);

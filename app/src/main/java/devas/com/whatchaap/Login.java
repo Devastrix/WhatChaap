@@ -5,12 +5,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
+import android.support.v7.widget.AppCompatTextView;
 import android.util.Log;
 import android.view.View;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
 
-    AppCompatEditText passwd, username;
+    private AppCompatEditText passwd, username;
+    AppCompatTextView reg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,9 +27,18 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         }
         username = (AppCompatEditText) findViewById(R.id.username);
         passwd  = (AppCompatEditText) findViewById(R.id.pass);
+        reg = (AppCompatTextView) findViewById(R.id.register);
         AppCompatButton log = (AppCompatButton) findViewById(R.id.login);
 
         log.setOnClickListener(this);
+        reg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Login.this, Register.class);
+                startActivity(i);
+                finish();
+            }
+        });
     }
 
     @Override

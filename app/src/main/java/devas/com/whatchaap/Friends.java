@@ -104,6 +104,7 @@ public class Friends extends Fragment  {
                 Intent i = new Intent(getActivity(),Chats.class);
                 i.putExtra("user2", tv.getText().toString());
                 startActivity(i);
+                //finish();
 
             }
         });
