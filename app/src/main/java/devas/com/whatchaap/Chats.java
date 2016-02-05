@@ -34,6 +34,7 @@ public class Chats extends AppCompatActivity implements View.OnClickListener {
         user1 = ud.getUsername();
         Bundle b = getIntent().getExtras();
         user2 = b.getString("user2");
+        toolbar.setTitle(user2);
 
 
         random = new Random();
