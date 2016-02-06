@@ -120,6 +120,7 @@ public class Friends extends Fragment  {
 
         String[] n = u.getUserfriends().split("=");
 
+
         HashMap<String, String> hm = new HashMap<>();
         ArrayList<HashMap<String, String>> al = new ArrayList<>();
 
