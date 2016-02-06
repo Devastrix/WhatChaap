@@ -129,7 +129,8 @@ public class Friends extends Fragment  {
                 return;
             }
             System.out.println("naye " + t);
-            hm.put("friend", t.trim());
+            hm.put("friend", t.split("->")[0].trim());
+            hm.put("status", t.split("->")[1].trim());
             al.add(hm);
         }
 
@@ -137,8 +138,8 @@ public class Friends extends Fragment  {
                 getActivity() ,
                 al,
                 R.layout.friend_item,
-                new String[] { "friend" },
-                new int[] { R.id.friendName});
+                new String[] { "friend" , "status"},
+                new int[] { R.id.friendName, R.id.status});
 
        // adapter1.notifyDataSetChanged();
         //adapter1.add();

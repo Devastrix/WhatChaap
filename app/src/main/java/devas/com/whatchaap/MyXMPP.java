@@ -21,6 +21,7 @@ import org.jivesoftware.smack.chat.ChatManager;
 import org.jivesoftware.smack.chat.ChatManagerListener;
 import org.jivesoftware.smack.chat.ChatMessageListener;
 import org.jivesoftware.smack.packet.Message;
+import org.jivesoftware.smack.packet.Presence;
 import org.jivesoftware.smack.packet.Stanza;
 import org.jivesoftware.smack.roster.Roster;
 import org.jivesoftware.smack.roster.RosterEntry;
@@ -301,9 +302,12 @@ public class MyXMPP {
 
             Collection<RosterEntry> entries = roster.getEntries();
             ArrayList<String> names = new ArrayList<>();
+            Presence presence;
             for (RosterEntry entry : entries) {
+                presence = roster.getPresence(entry.getJid());
                 System.out.println("friends: " + entry.getName() + " - "+entry.getJid());
-                names.add(entry.getJid().toString().split("@")[0]);
+
+                names.add(entry.getJid().toString().split("@")[0] + "->"+ presence.getStatus());
             }
             return names;
         }
